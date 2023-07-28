@@ -10,7 +10,7 @@ class OCR_interface:
     # Processing the IMG with PaddleOCR
     def ocr_process(self, img = None):
         
-        ocr         = PaddleOCR(use_angle_cls=True, lang = 'pt')                    # need to run only once to download and load the model into memory
+        ocr         = PaddleOCR(use_angle_cls=True, lang = 'pt')                    # Need to run only once to download and load the model into memory
         img_path    = img
         result      = ocr.ocr(img_path, cls=True)                                   # Get infos from image
 
@@ -20,7 +20,7 @@ class OCR_interface:
                 print(line)
 
         result      = result[0]
-        image       = img                                                           # if you want to process a file, please use: Image.open(img_path).convert('RGB')
+        image       = img                                                           # If you want to process a file, please use: Image.open(img_path).convert('RGB')
         boxes       = [line[0] for line in result]  
         txts        = [line[1][0] for line in result]
         scores      = [line[1][1] for line in result]
