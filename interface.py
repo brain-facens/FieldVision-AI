@@ -3,12 +3,13 @@ import cv2
 import numpy as np
 from paddleocr import PaddleOCR, draw_ocr
 
+
 class OCRInterface:
     def __init__(self):
         self.img_file_buffer = st.camera_input("Tirar foto")
 
     def ocr_process(self, img, phrases):
-        ocr = PaddleOCR(use_angle_cls=True, lang='pt')  # Initialize PaddleOCR
+        ocr = PaddleOCR(use_angle_cls=True, lang="pt")  # Initialize PaddleOCR
         result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
         # Extract relevant information from OCR results based on specified phrases
@@ -24,7 +25,7 @@ class OCRInterface:
             for idx in result:
                 for line in idx:
                     line_plus = line[1][0].upper().replace(" ", "")
-                    line_plus = line_plus[:len(phrase)]
+                    line_plus = line_plus[: len(phrase)]
 
                     if line_plus == phrase:
                         coord.append({line[1][0]: line[0]})
@@ -49,11 +50,22 @@ class OCRInterface:
                     compara_max = xy_max[1] / _xy_max[1]
 
                     diferente = False
-                    if xy_min[0] != _xy_min[0] and xy_max[0] != _xy_max[0] and xy_min[0] < _xy_min[0] and xy_max[0] < _xy_max[0]:
+                    if (
+                        xy_min[0] != _xy_min[0]
+                        and xy_max[0] != _xy_max[0]
+                        and xy_min[0] < _xy_min[0]
+                        and xy_max[0] < _xy_max[0]
+                    ):
                         diferente = True
 
-                    if (compara_min >= 0.99 and compara_min <= 1.01) and (compara_max >= 0.99 and compara_max <= 1.01) and diferente == True:
-                        print(f"ACHOU, CAMPO ({axis[1][0]}), Coordenada {_xy_min, _xy_max}")
+                    if (
+                        (compara_min >= 0.99 and compara_min <= 1.01)
+                        and (compara_max >= 0.99 and compara_max <= 1.01)
+                        and diferente == True
+                    ):
+                        print(
+                            f"ACHOU, CAMPO ({axis[1][0]}), Coordenada {_xy_min, _xy_max}"
+                        )
                         text_lines_sec.append(axis[1][0])
                         boxes_sec.append(axis[0])
 
@@ -76,7 +88,9 @@ class OCRInterface:
     def img_capture(self):
         if self.img_file_buffer is not None:
             bytes_data = self.img_file_buffer.getvalue()
-            cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
+            cv2_img = cv2.imdecode(
+                np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR
+            )
             phrases = ["CNPJ", "VALOR"]
             img_result, txt = self.ocr_process(cv2_img, phrases)
 
@@ -85,6 +99,7 @@ class OCRInterface:
             st.image(cv2.cvtColor(img_result, cv2.COLOR_BGR2RGB))
             st.caption("Dados da Nota: ")
             st.table(txt)
+
 
 if __name__ == "__main__":
     interface = OCRInterface()
