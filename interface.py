@@ -59,9 +59,9 @@ class OCRInterface:
                         diferente = True
 
                     if (
-                        (compara_min >= 0.99 and compara_min <= 1.01)
-                        and (compara_max >= 0.99 and compara_max <= 1.01)
-                        and diferente == True
+                        (compara_min >= 0.95 and compara_min <= 1.05)
+                        and (compara_max >= 0.95 and compara_max <= 1.05)
+                        and (diferente == True) and (axis[0] not in boxes)
                     ):
                         print(
                             f"ACHOU, CAMPO ({axis[1][0]}), Coordenada {_xy_min, _xy_max}"
@@ -91,7 +91,7 @@ class OCRInterface:
             cv2_img = cv2.imdecode(
                 np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR
             )
-            phrases = ["CNPJ", "VALOR"]
+            phrases = ["CNPJ", "VALOR", "TOTAL", "PRODUTO"]
             img_result, txt = self.ocr_process(cv2_img, phrases)
 
             st.divider()
