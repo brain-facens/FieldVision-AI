@@ -22,10 +22,10 @@ class OCR_interface:
         # Draw result
         result = result[0]
         image = img #Image.open(img_path).convert('RGB')
-        boxes = [line[0] for line in result]
+        boxes = [line[0] for line in result]  
         txts = [line[1][0] for line in result]
         scores = [line[1][1] for line in result]
-        font_path = "/home/nata-brain/Documents/machine_learning/text_processing/fonts/simfang.ttf"  # Replace this with the path to your preferred TrueType font file.
+        font_path = "/root/OCR-notas/fonts/simfang.ttf"  # Replace this with the path to your preferred TrueType font file.
         im_show = draw_ocr(image, boxes, txts, scores, font_path=font_path)
         
         return im_show, txts
