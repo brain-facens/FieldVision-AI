@@ -27,7 +27,7 @@ Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
   conda activate paddle_env
   ```
 
-[!NOTE]  
+**Note**
 Recomendamos que utilizer Docker pois a aplicação é estável, não correndo o risco de instalações erradas, erros de paths e versões de bibliotecas.
 
 
