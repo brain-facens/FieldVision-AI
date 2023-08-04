@@ -107,3 +107,10 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </a>
     </td>
   </tr>
+</table>
+
+## 📝 License
+
+This project is under license. See the file [LICENSE](LICENSE) for more details.
+
+---
