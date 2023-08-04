@@ -76,7 +76,6 @@ A execução do container iniciará a interface e gerará a url (localhost:8004)
 
 ---
 
----
 ## 🤝 Collaborators
 
 We thank the following people who contributed to this project:
@@ -91,11 +90,6 @@ We thank the following people who contributed to this project:
         </sub>
       </a>
     </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
     <td align="center">
       <a href="#">
         <img src="https://avatars.githubusercontent.com/u/98903288?v=4" width="100px;" alt="Foto do Pedro Gabriel no GitHub"/><br>
@@ -105,5 +99,3 @@ We thank the following people who contributed to this project:
       </a>
     </td>
   </tr>
-</table>
----
