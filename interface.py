@@ -65,9 +65,7 @@ class OCR_interface:
         if self.img_file_buffer is not None:
             
             # To read image file buffer with OpenCV:
-            bytes_data       = self.img_file_buffer.getvalue()
-            self.cv2_img     = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-            
+            self.cv2_img     = cv2.imdecode(np.frombuffer(self.img_file_buffer.getvalue(), np.uint8), cv2.IMREAD_COLOR)
             self.ocr_process()   
             self.process_values()
             
