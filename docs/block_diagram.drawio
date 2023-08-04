@@ -1,38 +1,59 @@
 <mxfile host="65bd71144e">
     <diagram id="J_I_ihKT-vqniiB1T6zq" name="Page-1">
-        <mxGraphModel dx="1072" dy="773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1242" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="4" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+                <mxCell id="10" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="154" y="130" width="240" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Interface" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry width="112.94117647058822" height="48.83720930232558" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Camera access and Image Capture" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry y="97.67441860465117" width="112.94117647058822" height="48.83720930232558" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="10" source="2" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="Interface" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="298" y="170" width="120" height="60" as="geometry"/>
+                <mxCell id="5" value="OCR Processing" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry y="195.34883720930233" width="112.94117647058822" height="48.83720930232558" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="5">
+                <mxCell id="7" style="edgeStyle=none;html=1;" parent="10" source="3" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Camera access and Image Capture" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="298" y="290" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" style="edgeStyle=none;html=1;" edge="1" parent="1" source="5" target="6">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="5" value="OCR Processing" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="298" y="410" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="9" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="2">
+                <mxCell id="9" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="10" source="6" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="563" y="570" as="targetPoint"/>
+                        <mxPoint x="249.41176470588235" y="325.5813953488372" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="553" y="570"/>
-                            <mxPoint x="553" y="200"/>
+                            <mxPoint x="240" y="325.5813953488372"/>
+                            <mxPoint x="240" y="24.41860465116279"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="6" value="Results" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="298" y="540" width="120" height="60" as="geometry"/>
+                <mxCell id="6" value="Results" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry y="301.16279069767444" width="112.94117647058822" height="48.83720930232558" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;" parent="10" source="5" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="449" y="180" width="246" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="OCR_interface" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="11">
+                    <mxGeometry x="26" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&amp;nbsp;+img_file_buffer: Bytes&lt;br&gt;&amp;nbsp;+total_value: dict&lt;br&gt;&amp;nbsp;+im_show: np.array&lt;br&gt;&amp;nbsp;+txts: list&lt;br&gt;&amp;nbsp;+boxes: list&lt;br&gt;&amp;nbsp;+font_path: string&lt;br&gt;&amp;nbsp;+cv2_img: np.array" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="11">
+                    <mxGeometry x="26" y="60" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="ATTRIBUTES" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="11">
+                    <mxGeometry x="-15" y="105" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&amp;nbsp;+ocr_process()&lt;br&gt;&amp;nbsp;+is_float(): float, bool&lt;br&gt;&amp;nbsp;+process_values()&lt;br&gt;&amp;nbsp;+img_capture()" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="11">
+                    <mxGeometry x="26" y="180" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="METHODS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="11">
+                    <mxGeometry x="-15" y="200" width="60" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

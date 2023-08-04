@@ -1,6 +1,8 @@
 # OCR Notas
-
-Sistema para processamento de texto em notas fiscais para identificação de boneficação.
+<p align="center">
+  <img src="docs/app_diagram.png">
+</p>
+Sistema para processamento de texto em notas fiscais para identificação de boneficação. A aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da OCR e gera a visualização dos resultados obtidos. 
 
 ## Primeiros passos
 
@@ -27,9 +29,11 @@ Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
   conda activate paddle_env
   ```
 
-**Note**
-Recomendamos que utilizer Docker pois a aplicação é estável, não correndo o risco de instalações erradas, erros de paths e versões de bibliotecas.
+---
+**Atenção!**
+**Recomendamos que utilizer Docker pois a aplicação é estável, não correndo o risco de instalações erradas, erros de paths e versões de bibliotecas.**
 
+---
 
 ### Instalação 
 
@@ -66,27 +70,40 @@ Docker:
 # Execução do conteiner com a aplicação
 docker run -it --rm --name OCR --privileged --net=host --env=NVIDIA_VISIBLE_DEVICES=all --env=NVIDIA_DRIVER_CAPABILITIES=all --env=DISPLAY --env=QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix natavitorino/ocr_paddle:1.2 bash
 ```
+---
+**Atenção!**
+A execução do container iniciará a interface e gerará a url (localhost:8004) que dará acesso a interface.
 
-## Deployment
+---
 
-Additional notes on how to deploy this on a live or release system. Explaining the most important branches, what pipelines they trigger and how to update the database (if anything special).
+---
+## 🤝 Collaborators
 
-### Server
+We thank the following people who contributed to this project:
 
-* Live:
-* Release:
-* Development:
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/64169072?v=4" width="100px;" alt="Foto do Natanael Vitorino no GitHub"/><br>
+        <sub>
+          <b>Natanael Vitorino</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-### Branches
-
-* Master:
-* Feature:
-* Bugfix:
-* etc...
-
-## Additional Documentation and Acknowledgments
-
-* Project folder on server:
-* Confluence link:
-* Asana board:
-* etc...
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/98903288?v=4" width="100px;" alt="Foto do Pedro Gabriel no GitHub"/><br>
+        <sub>
+          <b>Pedro Gabriel</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+---
