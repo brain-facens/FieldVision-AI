@@ -12,15 +12,15 @@ Este projeto foi desenvolvido para executar uma interface web, onde o usuário t
 
 Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
 
-* Ubuntu 20.04 (Ambiente de desenvolvimento original, mas é compatível com 18.04 e 22.04)
-* Docker Engine ou Docker Desktop
-* Python 3.8
-* Git
-* Anaconda/Miniconda
-* Desejaveis
-  * CUDA 10.1 / CUDA 10.2
-  * cuDNN 7.6
-* Crie um ambiente virtual para o projeto caso queira trabalhar sem virtualização;
+- Ubuntu 20.04 (Ambiente de desenvolvimento original, mas é compatível com 18.04 e 22.04)
+- Docker Engine ou Docker Desktop
+- Python 3.8
+- Git
+- Anaconda/Miniconda
+- Desejaveis
+  - CUDA 10.1 / CUDA 10.2
+  - cuDNN 7.6
+- Crie um ambiente virtual para o projeto caso queira trabalhar sem virtualização;
  
   ```
   conda create --name paddle_env python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
@@ -78,7 +78,7 @@ A execução do container iniciará a interface e gerará a url (localhost:8004)
 
 ## 🤝 Collaborators
 
-We thank the following people who contributed to this project:
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
 <table>
   <tr>
