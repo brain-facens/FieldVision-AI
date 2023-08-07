@@ -2,7 +2,7 @@
 <p align="center">
   <img src="docs/app_diagram.png">
 </p>
-Sistema para processamento de texto em notas fiscais para identificação de boneficação. A aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da OCR e gera a visualização dos resultados obtidos. 
+Sistema para processamento de texto em notas fiscais, com o objetivo de realizar a identificação de campos relevantes em uma nota e otimizar sistemas de boneficação ou validação. Facilidando a vida de logistas, comerciantes e gestores, a aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da imagem por meio de OCR e disponibiliza a visualização dos resultados obtidos.
 
 ## Primeiros passos
 
@@ -17,7 +17,7 @@ Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
 - Python 3.8
 - Git
 - Anaconda/Miniconda
-- Desejaveis
+- Desejáveis
   - CUDA 10.1 / CUDA 10.2
   - cuDNN 7.6
 - Crie um ambiente virtual para o projeto caso queira trabalhar sem virtualização;
@@ -31,7 +31,7 @@ Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
 
 ---
 **Atenção!**
-**Recomendamos que utilizer Docker pois a aplicação é estável, não correndo o risco de instalações erradas, erros de paths e versões de bibliotecas.**
+**Recomendamos que utilize o container Docker desenvolvido para este projeto, pois a aplicação é estável. Evitando assim, o risco de instalações erradas, erros de paths e versões de bibliotecas.**
 
 ---
 
@@ -72,7 +72,7 @@ docker run -it --rm --name OCR --privileged --net=host --env=NVIDIA_VISIBLE_DEVI
 ```
 ---
 **Atenção!**
-A execução do container iniciará a interface e gerará a url (localhost:8004) que dará acesso a interface.
+A execução do container iniciará a interface e gerará a url (localhost:8004), ela dará acesso a interface.
 
 ---
 
