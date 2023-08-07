@@ -34,8 +34,8 @@ class OCR_interface:
         self.scores     = [line[1][1] for line in self.result]
         self.im_show    = draw_ocr(self.cv2_img, self.boxes, self.txts, self.scores, font_path = self.font_path)
         
-    
-    def is_float(self, value):
+    @staticmethod
+    def is_float(value):
         try:
             float_value = float(value)
             return float_value, True
