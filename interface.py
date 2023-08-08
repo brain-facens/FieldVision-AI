@@ -20,11 +20,11 @@ class OCRInterface:
         boxes_sec = []
 
         for f in phrases:
-            phrase = f.upper().replace(" ", "")
+            phrase = f.upper().replace(" ", "").replace("$","S")
 
             for idx in result:
                 for line in idx:
-                    line_plus = line[1][0].upper().replace(" ", "")
+                    line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
                     line_plus = line_plus[: len(phrase)]
 
                     if line_plus == phrase:
@@ -92,7 +92,7 @@ class OCRInterface:
             cv2_img = cv2.imdecode(
                 np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR
             )
-            phrases = ["CNPJ", "VALOR", "TOTAL", "PRODUTO"]
+            phrases = ["RUA", "TOTAL R$", "CNPJ"]
             img_result, txt = self.ocr_process(cv2_img, phrases)
 
             st.divider()
