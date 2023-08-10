@@ -18,19 +18,26 @@ class OCRInterface:
         text_lines_sec = []
         boxes = []
         boxes_sec = []
+        txts = []
 
         for f in phrases:
             phrase = f.upper().replace(" ", "").replace("$","S")
 
             for idx in result:
                 for line in idx:
-                    line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
-                    line_plus = line_plus[: len(phrase)]
+                    _line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
+                    line_plus = _line_plus[: len(phrase)]
 
                     if line_plus == phrase:
                         coord.append({line[1][0]: line[0]})
                         text_lines.append(line[1][0])
                         boxes.append(line[0])
+                        
+                        if len(phrase) != len(_line_plus):
+                            txts_ = line[1][0]
+                            txts_ = txts_.split(f)
+                            print(f"{f}:{txts_[1]}")
+                            txts.append(txts_)
 
         # Process the found coordinates
         for comp in coord:
@@ -69,7 +76,7 @@ class OCRInterface:
                         )
                         text_lines_sec.append(axis[1][0])
                         boxes_sec.append(axis[0])
-
+ 
         num_boxes = len(boxes)
         boxes = np.array(boxes).reshape(num_boxes, 4, 2).astype(np.int64)
 
