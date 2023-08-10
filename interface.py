@@ -66,8 +66,8 @@ class OCRInterface:
                         diferente = True
 
                     if (
-                        (compara_min >= 0.95 and compara_min <= 1.05)
-                        and (compara_max >= 0.95 and compara_max <= 1.05)
+                        (compara_min >= 0.98 and compara_min <= 1.02)
+                        and (compara_max >= 0.98 and compara_max <= 1.02)
                         and (diferente == True)
                         and (axis[0] not in boxes)
                     ):
@@ -88,7 +88,7 @@ class OCRInterface:
 
         result = result[0]
         image = img
-        font_path = "PaddleOCR/StyleText/fonts/en_standard.ttf"
+        font_path = "/home/pedro/Documents/NotasFiscais/PaddleOCR/StyleText/fonts/en_standard.ttf"
         im_show = draw_ocr(image, all_boxes, all_texts, font_path=font_path)
 
         return im_show, all_texts
