@@ -1,9 +1,8 @@
-import streamlit as st
-import re
-import cv2
+import cv2 as cv
 import numpy as np
+import streamlit as st
+import urllib.request as request
 from paddleocr import PaddleOCR, draw_ocr
-import matplotlib.pyplot as plt
 
 
 class OCR_interface:
@@ -15,12 +14,12 @@ class OCR_interface:
         self.txts               = None
         self.boxes              = None
         self.font_path          = "/root/OCR-notas/fonts/simfang.ttf"                        # Replace this with the path to your preferred TrueType font file.
-        self.cv2_img            = None
+        self.cv_img            = None
 
     def ocr_process(self):
 
         ocr = PaddleOCR(use_angle_cls=True)                                                  # need to run only once to download and load the model into memory
-        self.result = ocr.ocr(self.cv2_img, cls=True)
+        self.result = ocr.ocr(self.cv_img, cls=True)
 
         for idx in range(len(self.result)):
             res = self.result[idx]
@@ -32,7 +31,7 @@ class OCR_interface:
         self.boxes      = [line[0] for line in self.result]  
         self.txts       = [line[1][0] for line in self.result]
         self.scores     = [line[1][1] for line in self.result]
-        self.im_show    = draw_ocr(self.cv2_img, self.boxes, self.txts, self.scores, font_path = self.font_path)
+        self.im_show    = draw_ocr(self.cv_img, self.boxes, self.txts, self.scores, font_path = self.font_path)
         
     @staticmethod
     def is_float(value):
@@ -63,18 +62,34 @@ class OCR_interface:
 
     def img_capture(self):
         if self.img_file_buffer is not None:
-            
+
             # To read image file buffer with OpenCV:
-            self.cv2_img     = cv2.imdecode(np.frombuffer(self.img_file_buffer.getvalue(), np.uint8), cv2.IMREAD_COLOR)
+            self.cv_img     = cv.imdecode(np.frombuffer(self.img_file_buffer.getvalue(), np.uint8), cv.IMREAD_COLOR)
             self.ocr_process()   
             self.process_values()
             
             st.divider()
             st.caption("Imagem Processada:")
-            st.image(cv2.cvtColor(self.im_show, cv2.COLOR_BGR2RGB))
+            st.image(cv.cvtColor(self.im_show, cv.COLOR_BGR2RGB))
             st.caption("Dados da Nota:")
             st.table(self.txts)
             st.table(self.total_value)
+
+            
+    def img_from_url(self):
+        url_response = request.urlopen('https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/egsW6tkKWYI8IHE6JyMZ.png?auto=format&w=439')
+        img_array = np.array(bytearray(url_response.read()), dtype=np.uint8)
+        img = cv.imdecode(img_array, -1)
+        self.cv_img     = img
+        self.ocr_process()   
+        self.process_values()
+        
+        st.divider()
+        st.caption("Imagem Processada:")
+        st.image(cv.cvtColor(self.im_show, cv.COLOR_BGR2RGB))
+        st.caption("Dados da Nota:")
+        st.table(self.txts)
+        st.table(self.total_value)       
             
             
 if __name__ == "__main__":

@@ -103,4 +103,4 @@ class OCRInterface:
 
 if __name__ == "__main__":
     interface = OCRInterface()
-    interface.img_capture()
+    interface.img()
