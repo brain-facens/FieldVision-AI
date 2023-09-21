@@ -1,3 +1,4 @@
+import os 
 import cv2 as cv
 import numpy as np
 import streamlit as st
@@ -13,7 +14,7 @@ class OCR_interface:
         self.im_show            = None
         self.txts               = None
         self.boxes              = None
-        self.font_path          = "/root/OCR-notas/fonts/simfang.ttf"                        # Replace this with the path to your preferred TrueType font file.
+        self.font_path          = "fonts/simfang.ttf"                        # Replace this with the path to your preferred TrueType font file.
         self.cv_img            = None
 
     def ocr_process(self):
@@ -77,21 +78,27 @@ class OCR_interface:
 
             
     def img_from_url(self):
-        url_response = request.urlopen('https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/egsW6tkKWYI8IHE6JyMZ.png?auto=format&w=439')
-        img_array = np.array(bytearray(url_response.read()), dtype=np.uint8)
-        img = cv.imdecode(img_array, -1)
-        self.cv_img     = img
-        self.ocr_process()   
-        self.process_values()
         
-        st.divider()
-        st.caption("Imagem Processada:")
-        st.image(cv.cvtColor(self.im_show, cv.COLOR_BGR2RGB))
-        st.caption("Dados da Nota:")
-        st.table(self.txts)
-        st.table(self.total_value)       
+        path = '/home/nata-brain/Documents/brain/OCR-notas/data/app/images/1.jpg'
+        isFile = os.path.isfile(path)
+        
+        if isFile:
+            self.cv_img     = cv.imread('data/app/images/1.jpg')
+            self.ocr_process()   
+            self.process_values()
+            
+            st.divider()
+            st.caption("Imagem Processada:")
+            st.image(cv.cvtColor(self.im_show, cv.COLOR_BGR2RGB))
+            st.caption("Dados da Nota:")
+            st.table(self.txts)
+            st.table(self.total_value)    
+            
+        else:
+            st.divider()
+            st.caption("No Data")     
             
             
 if __name__ == "__main__":
     interface = OCR_interface()
-    interface.img_capture()
+    interface.img_from_url()

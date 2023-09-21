@@ -1,8 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
 import os
-from random import randint
-import uuid
  
 IMAGEDIR = "images/"
  
@@ -15,7 +13,7 @@ def read_root():
 @app.post("/upload/")
 async def create_upload_file(file: UploadFile = File(...)):
  
-    file.filename = f"{uuid.uuid4()}.jpg"
+    file.filename = f"1.jpg"
     contents = await file.read()
  
     #save the file
@@ -30,7 +28,7 @@ async def read_random_file():
  
     # get random file from the image directory
     files = os.listdir(IMAGEDIR)
-    random_index = randint(0, len(files) - 1)
+    random_index = 0
  
     path = f"{IMAGEDIR}{files[random_index]}"
      
