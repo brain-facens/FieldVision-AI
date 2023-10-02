@@ -112,5 +112,5 @@ class OCR_interface:
             
      
 if __name__ == "__main__":
-    interface = OCR_interface(mode=0, img_path ='/home/nata-brain/Documents/projects/OCR-notas/data/images/1.jpg')
+    interface = OCR_interface(mode=2, img_path ='/home/nata-brain/Documents/projects/OCR-notas/data/images/1.jpg')
     interface.pipeline_processing()
