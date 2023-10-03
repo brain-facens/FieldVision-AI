@@ -52,7 +52,7 @@ export default function App() {
       });
 
       try {
-        const response = await fetch('http://172.18.0.1:5000/home', {
+        const response = await fetch('http://127.0.0.1:8000/upload/post', {
           method: 'POST',
           body: formData,
           headers: {
