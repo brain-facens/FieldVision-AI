@@ -7,7 +7,7 @@ from paddleocr import PaddleOCR, draw_ocr
 
 
 class OCR_interface:
-    def __init__(self, mode = 0, img_path = '/home/nata-brain/Documents/projects/OCR-notas/data/images/1.jpg', api_uri = 'http://127.0.0.1:8000/show/'):
+    def __init__(self, mode = 0, img_path = '/home/nata-brain/Documents/projects/OCR-notas/data/images/1.jpg', api_uri = 'http://18.225.175.13/show/'):
         self.mode               = mode                              # 0 to capture image from camera, 1 from path and 2 from API
         self.img_file_buffer    = st.camera_input("Tirar foto")
         self.total_value        = {'subtotal': None,
@@ -112,5 +112,5 @@ class OCR_interface:
             
      
 if __name__ == "__main__":
-    interface = OCR_interface(mode=2, img_path ='/home/nata-brain/Documents/projects/OCR-notas/data/images/1.jpg')
+    interface = OCR_interface(mode=2)
     interface.pipeline_processing()
