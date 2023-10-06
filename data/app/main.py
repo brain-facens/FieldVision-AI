@@ -1,5 +1,7 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse
+from pydantic import BaseModel, EmailStr
+from typing import Union
 import os
 
 # path to save uploaded images
@@ -7,12 +9,16 @@ IMAGEDIR = "../images/"
  
 app = FastAPI()
 
+class ReportBase(BaseModel):
+    ocr_data: str
+    
+
 # root API path
 @app.get("/")
 def read_root():
     return {"Image API read!"} 
  
-# upload Service 
+# upload image service 
 @app.post("/upload/")
 async def create_upload_file(file: UploadFile = File(...)):
  
@@ -24,6 +30,12 @@ async def create_upload_file(file: UploadFile = File(...)):
         f.write(contents)
  
     return {"filename": file.filename}
+
+
+# upload text data service 
+@app.post("/report/")
+async def create_upload_data(report: ReportBase):
+    return report
  
 # get image  
 @app.get("/show/")
