@@ -7,17 +7,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "expo": "~48.0.18",
+    "expo-camera": "~13.2.1",
+    "expo-media-library": "~15.2.3",
+    "expo-sharing": "~11.2.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.13",
-    "expo-camera": "~13.2.1",
-    "expo-sharing": "~11.2.2",
-    "rn-fetch-blob": "*",
     "react-native-fs": "*",
-    "@expo/vector-icons": "^13.0.0",
-    "expo-media-library": "~15.2.3",
-    "react-native-image-picker": "*"
+    "react-native-image-picker": "*",
+    "rn-fetch-blob": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

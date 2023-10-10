@@ -51,7 +51,7 @@ export default function App() {
       const source = data.base64;
 
       if (source) {
-        let apiUrl = 'http://3.147.47.4/upload/'; // Mudar de acordo conforme a mudança de endereço
+        let apiUrl = 'http://18.220.184.248/upload/'; // Mudar de acordo conforme a mudança de endereço
         let formData = new FormData();
         formData.append('file', {
           uri: data.uri,
