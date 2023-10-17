@@ -53,7 +53,6 @@ Docker:
 ```
 # Download da imagem do projeto
 docker pull natavitorino/ocr_paddle:1.2
-
 ```
 
 
