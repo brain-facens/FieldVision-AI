@@ -52,7 +52,7 @@ pip install -r requirements.txt
 Docker:
 ```
 # Download da imagem do projeto
-docker push natavitorino/ocr_paddle:1.2
+docker pull natavitorino/ocr_paddle:1.2
 
 ```
 
