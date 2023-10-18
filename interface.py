@@ -1,9 +1,10 @@
 import os
 import cv2 as cv
 import numpy as np
-import streamlit as st
 from urllib import request
 from paddleocr import PaddleOCR, draw_ocr
+
+# import streamlit as st
 
 
 class OCR_interface:
@@ -11,7 +12,7 @@ class OCR_interface:
         self,
         phrases,
         img_path="/home/pedro/Documents/OCR-notas/data/images/1.jpg",
-        api_uri="http://18.220.184.248/show/",
+        api_uri="http://18.188.174.164/show/",
     ):
         self.txts = None
         self.boxes = None
@@ -21,22 +22,6 @@ class OCR_interface:
         self.phrases = phrases
         self.img_path = img_path
         self.font_path = "/home/pedro/Documents/OCR-notas/fonts/simfang.ttf"  # Replace this with the path to your preferred TrueType font file.
-
-    # def ocr_process(self):
-    #     ocr = PaddleOCR(use_angle_cls=True)                                                  # need to run only once to download and load the model into memory
-    #     self.result = ocr.ocr(self.cv_img, cls=True)
-
-    #     for idx in range(len(self.result)):
-    #         res = self.result[idx]
-    #         for line in res:
-    #             print(line)
-
-    #     # Draw result
-    #     self.result     = self.result[0]
-    #     self.boxes      = [line[0] for line in self.result]
-    #     self.texts       = [line[1][0] for line in self.result]
-    #     self.scores     = [line[1][1] for line in self.result]
-    #     self.im_show    = draw_ocr(self.cv_img, self.boxes, self.texts, self.scores, font_path = self.font_path)
 
     def ocr_process(self):
         ocr = PaddleOCR(use_angle_cls=True, lang="pt")  # Initialize PaddleOCR
@@ -119,8 +104,6 @@ class OCR_interface:
         self.txts = np.concatenate((text_lines, text_lines_sec), axis=0)
 
         self.result = result[0]
-        image = img
-        # self.im_show = draw_ocr(image, self.boxes, self.txts, self.font_path)
 
     @staticmethod
     def is_float(value):
@@ -136,13 +119,14 @@ class OCR_interface:
         self.cv_img = cv.imdecode(img_array, -1)
 
         self.ocr_process()
+        return self.txts
+        
+        
+        # st.divider()
+        # st.caption("Imagem Processada:")
 
-        st.divider()
-        st.caption("Imagem Processada:")
-        # st.image(cv.cvtColor(self.im_show, cv.COLOR_BGR2RGB))
-        st.caption("Dados da Nota:")
-        st.table(self.txts)
-
+        # st.caption("Dados da Nota:")
+        # st.table(self.txts)
 
 if __name__ == "__main__":
     interface = OCR_interface(phrases=["RUA", "TOTAL", "CNPJ"])
