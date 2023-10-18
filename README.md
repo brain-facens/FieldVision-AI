@@ -78,7 +78,7 @@ A execução do container iniciará a interface e gerará a url (localhost:8004)
 ## Demonstração
 
 <p align="center">
-  <img src="img/demo_image.png">
+  <img src="docs/demo_image.png">
 </p>
 
 ---
