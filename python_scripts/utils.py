@@ -1,12 +1,7 @@
-from paddleocr import PaddleOCR,  draw_ocr
+from paddleocr import PaddleOCR
 import numpy as np
 import cv2
 
-
-# def ocr_process(img):
-#         ocr = PaddleOCR(use_angle_cls=True)                                                  # need to run only once to download and load the model into memory
-#         result = ocr.ocr(img, cls=True)
-#         return result
 
 def read_imagefile(data):
     npimg = np.frombuffer(data, np.uint8)
@@ -38,7 +33,7 @@ def ocr_process(img, phrases):
                         coord.append({line[1][0]: line[0]})
                         text_lines.append(line[1][0])
                         boxes.append(line[0])
-                        
+
                         if len(phrase) != len(_line_plus):
                             txts_ = line[1][0]
                             txts_ = txts_.split(f)
@@ -89,12 +84,6 @@ def ocr_process(img, phrases):
         num_boxes_sec = len(boxes_sec)
         boxes_sec = np.array(boxes_sec).reshape(num_boxes_sec, 4, 2).astype(np.int64)
 
-        all_boxes = np.concatenate((boxes, boxes_sec), axis=0)
         all_texts = np.concatenate((text_lines, text_lines_sec), axis=0)
 
-        result = result[0]
-        image = img
-        font_path = "/root/OCR-notas/fonts/simfang.ttf"
-        im_show = draw_ocr(image, all_boxes, all_texts, font_path=font_path)
-
-        return im_show, all_texts
+        return all_texts
