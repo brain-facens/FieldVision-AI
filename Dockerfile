@@ -11,7 +11,6 @@ RUN pip install --upgrade pip
 COPY requirements.txt /app
 
 COPY paddleocr/ /root/.paddleocr
-# RUN mv /root/paddleocr /root/.paddleocr
 
 RUN pip install -r /app/requirements.txt
 

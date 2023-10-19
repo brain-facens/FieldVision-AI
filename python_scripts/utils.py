@@ -10,7 +10,7 @@ def read_imagefile(data):
     return frame
 
 def ocr_process(img, phrases):
-        ocr = PaddleOCR(use_angle_cls=True, lang="pt")  # Initialize PaddleOCR
+        ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
         result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
         # Extract relevant information from OCR results based on specified phrases

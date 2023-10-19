@@ -15,7 +15,7 @@ class Filter:
 
     def get_filter(self):
         return self._filter_words
-    
+
 class Results:
     def __init__(self):
         self._results = []
@@ -25,7 +25,7 @@ class Results:
 
     def get_results(self):
         return self._results
-    
+
 results = Results()
 
 parser = argparse.ArgumentParser()
