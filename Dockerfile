@@ -10,6 +10,9 @@ RUN pip install --upgrade pip
 
 COPY requirements.txt /app
 
+COPY paddleocr/ /root/.paddleocr
+# RUN mv /root/paddleocr /root/.paddleocr
+
 RUN pip install -r /app/requirements.txt
 
 RUN wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
@@ -21,6 +24,4 @@ ENV PYTHONPATH=/app/PaddleOCR
 COPY python_scripts/utils.py /app
 COPY python_scripts/main.py /app
 
-EXPOSE 8080
-
-CMD ["python", "main.py", "--phrases", "ad,ad,asd"]
+CMD ["python", "main.py", "--filter", "first,second,third"]
