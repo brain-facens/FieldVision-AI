@@ -1,7 +1,7 @@
 # OCR Notas
-<p align="center">
-  <video src="docs/API_demo.mp4">
-</p>
+
+https://github.com/brain-facens/OCR-notas/assets/64169072/8078be88-cb17-4616-9e03-8646b638b623
+
 API para processamento de texto em notas fiscais, com o objetivo de realizar a identificação de campos relevantes em uma nota e otimizar sistemas de boneficação ou validação. Facilidando a vida de logistas, comerciantes e gestores, a aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da imagem por meio de OCR e disponibiliza a visualização dos resultados obtidos.
 
 ## Primeiros passos
@@ -78,9 +78,10 @@ A execução do container, iniciará a API, ela é a interface entre o processam
 
 ## Demonstração
 
-<p align="center">
-  <video src="docs/API_demo_2.mp4">
-</p>
+
+https://github.com/brain-facens/OCR-notas/assets/64169072/fcb7e222-cb14-4963-8ef6-a1e8f77f521b
+
+
 
 ---
 
