@@ -16,8 +16,8 @@ application has an interface that captures webcam images,
 processes the image using OCR and makes it possible to view 
 the results obtained.
 """
+from paddleocr import PaddleOCR # C0114, pylint: disable=wrong-import-order
 from typing import List
-from paddleocr import PaddleOCR 
 import numpy as np
 import cv2
 
@@ -109,7 +109,7 @@ def ocr_process(img, phrases):
         '_xy_min': [],
         '_xy_max': [],
         'comparing_min': [],
-        'comparing_max': [],  
+        'comparing_max': [],
     }
 
     structure_result = {
@@ -163,18 +163,18 @@ def ocr_process(img, phrases):
                     comparing_min = management_data['xy_min'][1] / management_data['_xy_min'][1]
                     comparing_max = management_data['xy_max'][1] / management_data['_xy_max'][1]
 
+                    management_data['different'] = False
+
                     # Find the data on the same axis to the right of the reference
                     if (
-                        (management_data['xy_min'][0] < management_data['_xy_min'][0]) and
-                        (management_data['xy_max'][0] < management_data['_xy_max'][0])
+                        management_data['xy_min'][0] < management_data['_xy_min'][0] and
+                        management_data['xy_max'][0] < management_data['_xy_max'][0]
                     ):
 
                         # Checks the distance of the data from the reference
-                        if (
-                            (comparing_min >= 0.98 and comparing_min <= 1.02) and
-                            (comparing_max >= 0.98 and comparing_max <= 1.02) and
-                            (axis[0] not in structure_result["boxes"])
-                        ):
+                        if (0.98 <= comparing_min <= 1.02 and
+                           0.98 <= comparing_max <= 1.02 and
+                           axis[0] not in structure_result["boxes"]):
                             print(
                                 f"ACHOU, CAMPO ({axis[1][0]}), Coordenada \
                                 {management_data['_xy_min'], management_data['_xy_max']}"
@@ -183,12 +183,12 @@ def ocr_process(img, phrases):
                             structure_result["boxes_sec"].append(axis[0])
 
         structure_result["num_boxes"] = len(structure_result["boxes"])
-        structure_result["boxes"] = np.array(structure_result["boxes"])
-        structure_result["boxes"][0].reshape(structure_result["num_boxes"], 4, 2).astype(np.int64)
+        structure_result["boxes"] = np.array(structure_result["boxes"]).reshape( # E1121, pylint: disable=too-many-function-args
+                                    structure_result["num_boxes"], 4, 2).astype(np.int64)
 
         structure_result["num_boxes_sec"] = len(structure_result["boxes_sec"])
         structure_result['boxes_sec'] = np.array(structure_result["boxes_sec"])
-        structure_result['boxes_sec'] = structure_result['boxes_sec'][0].reshape(
+        structure_result['boxes_sec'] = structure_result['boxes_sec'].reshape( #E1101, pylint: disable=no-member
                                         structure_result["num_boxes_sec"], 4, 2).astype(np.int64)
 
         structure_result['all_txts'] = np.concatenate((structure_result["text_lines"],
