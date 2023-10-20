@@ -52,8 +52,7 @@ pip install -r requirements.txt
 Docker:
 ```
 # Download da imagem do projeto
-docker push natavitorino/ocr_paddle:1.2
-
+docker pull natavitorino/ocr_paddle:1.2
 ```
 
 
@@ -79,7 +78,7 @@ A execução do container iniciará a interface e gerará a url (localhost:8004)
 ## Demonstração
 
 <p align="center">
-  <img src="img/demo_image.png">
+  <img src="docs/demo_image.png">
 </p>
 
 ---
