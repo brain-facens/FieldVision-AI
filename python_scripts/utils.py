@@ -15,6 +15,8 @@ for logistics operators, merchants and managers, the
 application has an interface that captures webcam images, 
 processes the image using OCR and makes it possible to view 
 the results obtained.
+...
+OCR PROCESSING
 """
 from paddleocr import PaddleOCR # C0114, pylint: disable=wrong-import-order
 from typing import List
@@ -51,6 +53,7 @@ class Filter:
     def get_filter(self):
         """ TO DO """
         return self._filter_words
+
 
 class Results:
     """
@@ -109,6 +112,7 @@ class Results:
         """
         return self._results
 
+
 def list_of_strings(arg):
     """ 
     Get list of strings from user's filter input.
@@ -121,6 +125,7 @@ def list_of_strings(arg):
         The words entered by the user.
     """
     return arg.split(',')
+
 
 def read_imagefile(data):
     """ 
@@ -137,6 +142,7 @@ def read_imagefile(data):
     frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR) # E1101, pylint: disable=no-member
     cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # E1101, pylint: disable=no-member
     return frame
+
 
 def ocr_process(img, phrases):
     """ 
