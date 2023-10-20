@@ -5,63 +5,106 @@ import cv2
 
 
 class Filter:
+    """
+    Filter for selecting words that the user wants to find from the words found by OCR processing.
+
+    ...
+    Attributes
+    ----------
+    _filter_words : list
+        Words to filter.
+
+    Methods
+    -------
+        set_filter(new_filter)
+            Save words to filtering, setter to _filter_words (variable)
+        get_filter()
+            Returns the filter words    
+    """
+
     def __init__(self, filter_:List[str]):
+        """ TO DO """
         self._filter_words = filter_
 
     def set_filter(self, new_filter):
+        """ TO DO """
         self._filter_words = new_filter
 
     def get_filter(self):
+        """ TO DO """
         return self._filter_words
 
 class Results:
+    """
+    Filter for selecting words that the user wants to find from the words found by OCR processing.
+
+    ...
+    Attributes
+    ----------
+    _filter_words : list
+        Words to filter.
+
+    Methods
+    -------
+        set_filter(new_filter)
+            Save words to filtering, setter to _filter_words (variable)
+        get_filter()
+            Returns the filter words    
+    """
+
     def __init__(self):
+        """ TO DO """
         self._results = []
 
     def set_results(self, new_results):
+        """ TO DO """
         self._results = new_results
 
     def get_results(self):
+        """ TO DO """
         return self._results
 
 def list_of_strings(arg):
+    """ TO DO """
     return arg.split(',')
 
 def read_imagefile(data):
+    """ TO DO """
     npimg = np.frombuffer(data, np.uint8)
-    frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+    frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR) # E1101, so pylint: disable=invalid-name
     cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     return frame
 
 def ocr_process(img, phrases):
-        ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
-        result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
+    """ TO DO """
+    ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
+    result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
-        # Extract relevant information from OCR results based on specified phrases
-        coord = []
-        text_lines = []
-        text_lines_sec = []
-        boxes = []
-        boxes_sec = []
-        txts = []
+    # Extract relevant information from OCR results based on specified phrases
+    coord = []
+    text_lines = []
+    text_lines_sec = []
+    boxes = []
+    boxes_sec = []
+    txts = []
 
-        for f in phrases:
-            phrase = f.upper().replace(" ", "").replace("$","S")
+    for f in phrases:
+        phrase = f.upper().replace(" ", "").replace("$","S")
 
-            for idx in result:
-                for line in idx:
-                    _line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
-                    line_plus = _line_plus[: len(phrase)]
+        for idx in result:
+            for line in idx:
+                _line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
+                line_plus = _line_plus[: len(phrase)]
 
-                    if line_plus == phrase:
-                        coord.append({line[1][0]: line[0]})
-                        text_lines.append(line[1][0])
-                        boxes.append(line[0])
+                if line_plus == phrase:
+                    coord.append({line[1][0]: line[0]})
+                    text_lines.append(line[1][0])
+                    boxes.append(line[0])
 
-                        if len(phrase) != len(_line_plus):
-                            txts_ = line[1][0]
-                            txts_ = txts_.split(f)
-                            txts.append(txts_)
+                    if len(phrase) != len(_line_plus):
+                        txts_ = line[1][0]
+                        txts_ = txts_.split(f)
+                        txts.append(txts_)
 
         # Process the found coordinates
         for comp in coord:
@@ -100,7 +143,7 @@ def ocr_process(img, phrases):
                         )
                         text_lines_sec.append(axis[1][0])
                         boxes_sec.append(axis[0])
- 
+
         num_boxes = len(boxes)
         boxes = np.array(boxes).reshape(num_boxes, 4, 2).astype(np.int64)
 
