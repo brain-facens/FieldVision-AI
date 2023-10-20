@@ -15,6 +15,7 @@ args = parser.parse_args()
 
 filter_words = Filter(args.filter)
 results = Results()
+raw_results = Results()
 class UpdateFilter(BaseModel):
     filter: List[str] = args.filter
 
@@ -22,16 +23,22 @@ class UpdateFilter(BaseModel):
 def read_root():
     return {"info":"nothing here... /docs to documentation"} 
 
-@app.post("/image/")
-async def create_upload_file(file: UploadFile = File(...)):
+@app.post("/post_image/")
+async def post_file(file: UploadFile = File(...)):
     image = read_imagefile(await file.read())
-    results.set_results(ocr_process(image, filter_words.get_filter()))
+    filtered, raw = ocr_process(image, filter_words.get_filter())
+    results.set_results(filtered)
+    raw_results.set_results(raw)
 
     return {"result":results.get_results()}
 
-@app.get("/image/")
+@app.get("/result/")
 async def get_latest_result():
     return {"latest_result":results.get_results()}
+
+@app.get("/raw_result/")
+async def get_latest_raw_result():
+    return {"latest_result":raw_results.get_results()}
 
 @app.put("/filter/")
 async def update_flter(filter_: UpdateFilter):

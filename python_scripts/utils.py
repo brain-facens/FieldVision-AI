@@ -109,4 +109,4 @@ def ocr_process(img, phrases):
 
         all_texts = np.concatenate((text_lines, text_lines_sec), axis=0)
 
-        return all_texts.tolist()
+        return all_texts.tolist(), result
