@@ -61,7 +61,6 @@ def ocr_process(img, phrases):
                         if len(phrase) != len(_line_plus):
                             txts_ = line[1][0]
                             txts_ = txts_.split(f)
-                            print(f"{f}:{txts_[1]}")
                             txts.append(txts_)
 
         # Process the found coordinates
