@@ -20,6 +20,8 @@ RUN dpkg -i libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
 # Set the PYTHONPATH to include PaddleOCR
 ENV PYTHONPATH=/app/PaddleOCR
 
+EXPOSE 8080
+
 COPY python_scripts/utils.py /app
 COPY python_scripts/main.py /app
 
