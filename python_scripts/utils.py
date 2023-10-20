@@ -71,30 +71,85 @@ class Results:
     """
 
     def __init__(self):
-        """ TO DO """
+        """ 
+        Constructor to Results class
+
+        ...
+        Args:
+            None
+
+        Returns:
+            None
+        """
         self._results = []
 
     def set_results(self, new_results):
-        """ TO DO """
+        """ 
+        Setter for OCR processing results.
+
+        ...
+        Args:
+            new_results : Results from OCR processing.
+
+        Returns:
+            without return.
+        """
         self._results = new_results
 
     def get_results(self):
-        """ TO DO """
+        """ 
+        Getter for OCR processing results.
+
+        ...
+        Args:
+            Without args.
+
+        Returns:
+            The results.
+        """
         return self._results
 
 def list_of_strings(arg):
-    """ TO DO """
+    """ 
+    Get list of strings from user's filter input.
+
+    ...
+    Args:
+        arg: Words taken from user input.
+
+    Returns:
+        The words entered by the user.
+    """
     return arg.split(',')
 
 def read_imagefile(data):
-    """ TO DO """
+    """ 
+    Image processing.
+
+    ...
+    Args:
+        data: API buffer image.
+
+    Returns:
+        Frame with rgb color pattern and processed from byte array to ndarray.
+    """
     npimg = np.frombuffer(data, np.uint8)
     frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR) # E1101, pylint: disable=no-member
     cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # E1101, pylint: disable=no-member
     return frame
 
 def ocr_process(img, phrases):
-    """ TO DO """
+    """ 
+    OCR processing.
+
+    ...
+    Args:
+        img: image to process.
+        phrases: words filter.
+
+    Returns:
+        The word of interest based on the filter reference.
+    """
     ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
     result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
@@ -124,7 +179,7 @@ def ocr_process(img, phrases):
         "num_boxes_sec": None
     }
 
-
+    # Find the target word and get the result using the filters
     for f in phrases: # R1702, pylint: disable=too-many-nested-blocks
         phrase = f.upper().replace(" ", "").replace("$","S")
 
