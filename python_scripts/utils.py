@@ -1,7 +1,31 @@
 from paddleocr import PaddleOCR
+from typing import List
 import numpy as np
 import cv2
 
+
+class Filter:
+    def __init__(self, filter_:List[str]):
+        self._filter_words = filter_
+
+    def set_filter(self, new_filter):
+        self._filter_words = new_filter
+
+    def get_filter(self):
+        return self._filter_words
+
+class Results:
+    def __init__(self):
+        self._results = []
+
+    def set_results(self, new_results):
+        self._results = new_results
+
+    def get_results(self):
+        return self._results
+
+def list_of_strings(arg):
+    return arg.split(',')
 
 def read_imagefile(data):
     npimg = np.frombuffer(data, np.uint8)
@@ -86,4 +110,4 @@ def ocr_process(img, phrases):
 
         all_texts = np.concatenate((text_lines, text_lines_sec), axis=0)
 
-        return all_texts
+        return all_texts.tolist()
