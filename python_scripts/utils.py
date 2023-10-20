@@ -1,5 +1,23 @@
-from paddleocr import PaddleOCR # C0114, pylint: disable=missing-module-docstring
+""" 
+Developed by: BRAIN - Brazilian Artificial Inteligence Nucleus
+--------------------------------------------------------------
+Developers: Natanael Vitorino, Lucas Oliveira and Pedro Santos
+---
+e-mail: natanael.vitorino@facens.br, lucas.camargo@facens.br 
+        and pedro.santos@facens.br
+---        
+BRAIN, Sorocaba, Brazil, 2023
+--------------------------------------------------------------
+Description: A system for processing text on invoices, with 
+the aim of identifying relevant fields on an invoice and 
+optimizing rebate or validation systems. Making life easier 
+for logistics operators, merchants and managers, the 
+application has an interface that captures webcam images, 
+processes the image using OCR and makes it possible to view 
+the results obtained.
+"""
 from typing import List
+from paddleocr import PaddleOCR 
 import numpy as np
 import cv2
 
@@ -81,6 +99,19 @@ def ocr_process(img, phrases):
     result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
     # Extract relevant information from OCR results based on specified phrases
+    management_data = {
+        'line_plus': [],
+        'txts_': None,
+        'product': [],
+        'coordinates': [],
+        'xy_min': [],
+        'xy_max': [],
+        '_xy_min': [],
+        '_xy_max': [],
+        'comparing_min': [],
+        'comparing_max': [],  
+    }
+
     structure_result = {
         "coord": [],
         "text_lines": [],
@@ -94,67 +125,71 @@ def ocr_process(img, phrases):
     }
 
 
-    for f in phrases:
+    for f in phrases: # R1702, pylint: disable=too-many-nested-blocks
         phrase = f.upper().replace(" ", "").replace("$","S")
 
         for idx in result:
             for line in idx:
-                _line_plus = line[1][0].upper().replace(" ", "").replace("$","S")
-                line_plus = _line_plus[: len(phrase)]
+                management_data['line_plus'] = line[1][0].upper().replace(" ", "").replace("$","S")
+                management_data['line_plus'] = management_data['line_plus'][:len(phrase)]
 
-                if line_plus == phrase:
+                if management_data['line_plus'] == phrase:
                     structure_result['coord'].append({line[1][0]: line[0]})
                     structure_result["text_lines"].append(line[1][0])
                     structure_result["boxes"].append(line[0])
 
-                    if len(phrase) != len(_line_plus):
-                        txts_ = line[1][0]
-                        txts_ = txts_.split(f)
-                        structure_result["txts"].append(txts_)
+                    if len(phrase) != len(management_data['line_plus']):
+                        management_data["txts_"] = line[1][0]
+                        management_data["txts_"] = management_data["txts_"].split(f)
+                        structure_result["txts"].append(management_data["txts_"])
 
         # Process the found coordinates
         for comp in structure_result['coord']:
-            product = next(iter(comp.keys()))
-            coordinates = comp[product]
+            management_data["product"] = next(iter(comp.keys()))
+            management_data["coordinates"] = comp[management_data["product"]]
 
-            xy_min = coordinates[0]
-            xy_max = coordinates[2]
+            management_data["xy_min"] = management_data["coordinates"][0]
+            management_data["xy_max"] = management_data["coordinates"][2]
 
-            print(f"\n\nCOORDENADA DO CAMPO ({product}) {xy_min, xy_max}\n")
+            print(f"\n\nCOORDENADA DO CAMPO \
+                ({management_data['product']}) \
+                {management_data['xy_min'], management_data['xy_max']}\n")
+
             for l in result:
                 for axis in l:
-                    _xy_min = axis[0][0]
-                    _xy_max = axis[0][2]
+                    management_data['_xy_min'] = axis[0][0]
+                    management_data['_xy_max'] = axis[0][2]
 
-                    comparing_min = xy_min[1] / _xy_min[1]
-                    comparing_max = xy_max[1] / _xy_max[1]
+                    comparing_min = management_data['xy_min'][1] / management_data['_xy_min'][1]
+                    comparing_max = management_data['xy_max'][1] / management_data['_xy_max'][1]
 
-                    different = False
+                    # Find the data on the same axis to the right of the reference
                     if (
-                        xy_min[0] != _xy_min[0]
-                        and xy_max[0] != _xy_max[0]
-                        and xy_min[0] < _xy_min[0]
-                        and xy_max[0] < _xy_max[0]
+                        (management_data['xy_min'][0] < management_data['_xy_min'][0]) and
+                        (management_data['xy_max'][0] < management_data['_xy_max'][0])
                     ):
-                        different = True
 
-                    if (
-                        (comparing_min >= 0.98 and comparing_min <= 1.02)
-                        and (comparing_max >= 0.98 and comparing_max <= 1.02)
-                        and (different == True)
-                        and (axis[0] not in structure_result["boxes"])
-                    ):
-                        print(
-                            f"ACHOU, CAMPO ({axis[1][0]}), Coordenada {_xy_min, _xy_max}"
-                        )
-                        structure_result["text_lines_sec"].append(axis[1][0])
-                        structure_result["boxes_sec"].append(axis[0])
+                        # Checks the distance of the data from the reference
+                        if (
+                            (comparing_min >= 0.98 and comparing_min <= 1.02) and
+                            (comparing_max >= 0.98 and comparing_max <= 1.02) and
+                            (axis[0] not in structure_result["boxes"])
+                        ):
+                            print(
+                                f"ACHOU, CAMPO ({axis[1][0]}), Coordenada \
+                                {management_data['_xy_min'], management_data['_xy_max']}"
+                            )
+                            structure_result["text_lines_sec"].append(axis[1][0])
+                            structure_result["boxes_sec"].append(axis[0])
 
         structure_result["num_boxes"] = len(structure_result["boxes"])
-        structure_result["boxes"] = np.array(structure_result["boxes"]).reshape(structure_result["num_boxes"], 4, 2).astype(np.int64)
+        structure_result["boxes"] = np.array(structure_result["boxes"])
+        structure_result["boxes"][0].reshape(structure_result["num_boxes"], 4, 2).astype(np.int64)
 
         structure_result["num_boxes_sec"] = len(structure_result["boxes_sec"])
-        structure_result['boxes_sec'] = np.array(structure_result["boxes_sec"]).reshape(structure_result["num_boxes_sec"], 4, 2).astype(np.int64)
+        structure_result['boxes_sec'] = np.array(structure_result["boxes_sec"])
+        structure_result['boxes_sec'] = structure_result['boxes_sec'][0].reshape(
+                                        structure_result["num_boxes_sec"], 4, 2).astype(np.int64)
 
         structure_result['all_txts'] = np.concatenate((structure_result["text_lines"],
                                     structure_result["text_lines_sec"]), axis=0)
