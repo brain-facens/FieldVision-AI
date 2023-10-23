@@ -138,10 +138,10 @@ async def get_latest_filter():
     Args:
 
     Returns:
-        Latest word filter on API.
+        Returns the latest word filter on API.
     """
 
     return {"latest_filter":filter_words.get_filter()}
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8085, reload=True)
