@@ -4,7 +4,7 @@ https://github.com/brain-facens/OCR-notas/assets/64169072/8078be88-cb17-4616-9e0
 
 API for processing text on invoices, with the aim of identifying relevant fields on an invoice and optimizing bonus or validation systems. Making life easier for logisticians, merchants and managers, the application has an interface that captures images from the webcam, processes the image using OCR and provides a visualization of the results obtained.
 
-## First Stepes
+## First Steps
 
 This project was developed to run a web interface, where the user will have access to the image capture system and the data processed from that image. Follow the steps below to use this project, the stable version is in the main branch.
 
