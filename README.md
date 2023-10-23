@@ -1,8 +1,8 @@
 # OCR Notas
-<p align="center">
-  <img src="docs/app_diagram.png">
-</p>
-Sistema para processamento de texto em notas fiscais, com o objetivo de realizar a identificação de campos relevantes em uma nota e otimizar sistemas de boneficação ou validação. Facilidando a vida de logistas, comerciantes e gestores, a aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da imagem por meio de OCR e disponibiliza a visualização dos resultados obtidos.
+
+https://github.com/brain-facens/OCR-notas/assets/64169072/8078be88-cb17-4616-9e03-8646b638b623
+
+API para processamento de texto em notas fiscais, com o objetivo de realizar a identificação de campos relevantes em uma nota e otimizar sistemas de boneficação ou validação. Facilidando a vida de logistas, comerciantes e gestores, a aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da imagem por meio de OCR e disponibiliza a visualização dos resultados obtidos.
 
 ## Primeiros passos
 
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 Docker:
 ```
 # Download da imagem do projeto
-docker pull natavitorino/ocr_paddle:1.2
+docker pull brain20/ocr-notas
 ```
 
 
@@ -61,25 +61,27 @@ docker pull natavitorino/ocr_paddle:1.2
 Localmente:
 
 ```
-streamlit run interface.py
+# filtro aplicavél de até 3 palavras
+python main.py --filter <fist,second,third,...>
 ```
 
 Docker:
 ```
 # Execução do conteiner com a aplicação
-docker run -it --rm --name OCR --privileged --net=host --env=NVIDIA_VISIBLE_DEVICES=all --env=NVIDIA_DRIVER_CAPABILITIES=all --env=DISPLAY --env=QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix natavitorino/ocr_paddle:1.2 bash
+docker run -it --rm -p 8080:8080 brain20/ocr-notas
 ```
 ---
 **Atenção!**
-A execução do container iniciará a interface e gerará a url (localhost:8004), ela dará acesso a interface.
+A execução do container, iniciará a API, ela é a interface entre o processamento da OCR e o usuário final. A API é documentada em um Swagger, onde você poderá testa-la.
 
 ---
 
 ## Demonstração
 
-<p align="center">
-  <img src="docs/demo_image.png">
-</p>
+
+https://github.com/brain-facens/OCR-notas/assets/64169072/fcb7e222-cb14-4963-8ef6-a1e8f77f521b
+
+
 
 ---
 
@@ -94,6 +96,14 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
         <img src="https://avatars.githubusercontent.com/u/64169072?v=4" width="100px;" alt="Foto do Natanael Vitorino no GitHub"/><br>
         <sub>
           <b>Natanael Vitorino</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/102334565?v=4" width="100px;" alt="Foto do Natanael Vitorino no GitHub"/><br>
+        <sub>
+          <b>Lucas Oliveira</b>
         </sub>
       </a>
     </td>
