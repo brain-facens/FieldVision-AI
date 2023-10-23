@@ -23,7 +23,7 @@ import argparse
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel # E0611, pylint: disable=no-name-in-module
 import uvicorn
-from utils import (ocr_process, read_imagefile,
+from utils import (ocr_process, filter_process, read_imagefile,
                     list_of_strings, Results, Filter)
 
 
@@ -77,9 +77,14 @@ async def post_file(file: UploadFile = File(...)):
     """
 
     image = read_imagefile(await file.read())
-    filtered, raw = ocr_process(image, filter_words.get_filter())
-    results.set_results(filtered)
+    raw = ocr_process(image)
     raw_results.set_results(raw)
+
+    if filter_words.get_filter() is None:
+        return {"result":"result in /raw_result but no filter, please set a filter!"}
+
+    filtered = filter_process(image, filter_words.get_filter())
+    results.set_results(filtered)
 
     return {"result":results.get_results()}
 

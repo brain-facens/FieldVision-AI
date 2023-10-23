@@ -43,15 +43,42 @@ class Filter:
     """
 
     def __init__(self, filter_:List[str]):
-        """ TO DO """
+        """ 
+        Constructor for filter words class.
+
+        ...
+        Args:
+            Without args.
+
+        Returns:
+            Without returns..
+        """
         self._filter_words = filter_
 
     def set_filter(self, new_filter):
-        """ TO DO """
+        """ 
+        Setter for filter words.
+
+        ...
+        Args:
+            Without args.
+
+        Returns:
+            Without returns.
+        """
         self._filter_words = new_filter
 
     def get_filter(self):
-        """ TO DO """
+        """ 
+        Getter for filter words.
+
+        ...
+        Args:
+            Without args.
+
+        Returns:
+            The filter words.
+        """
         return self._filter_words
 
 
@@ -143,10 +170,25 @@ def read_imagefile(data):
     cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # E1101, pylint: disable=no-member
     return frame
 
-
-def ocr_process(img, phrases):
+def ocr_process(img):
     """ 
     OCR processing.
+
+    ...
+    Args:
+        img: image to process.
+
+    Returns:
+        Result of OCR processing on the image.
+    """
+    ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
+    result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
+    return result
+
+
+def filter_process(result, phrases):
+    """ 
+    Filter processing.
 
     ...
     Args:
@@ -156,8 +198,6 @@ def ocr_process(img, phrases):
     Returns:
         The word of interest based on the filter reference.
     """
-    ocr = PaddleOCR(use_angle_cls=True, lang="pt", show_log=False)  # Initialize PaddleOCR
-    result = ocr.ocr(img, cls=True)  # Get OCR results for the input image
 
     # Extract relevant information from OCR results based on specified phrases
     management_data = {
@@ -255,4 +295,4 @@ def ocr_process(img, phrases):
         structure_result['all_txts'] = np.concatenate((structure_result["text_lines"],
                                     structure_result["text_lines_sec"]), axis=0)
 
-        return structure_result['all_txts'].tolist(), result
+        return structure_result['all_txts'].tolist()
