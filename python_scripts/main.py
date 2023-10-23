@@ -36,6 +36,7 @@ args = parser.parse_args()
 filter_words = Filter(args.filter)
 results = Results()
 
+raw_results = Results()
 class UpdateFilter(BaseModel): # R0903, pylint: disable=too-few-public-methods
     """
     Model for structuring the input word that will be the filter.
@@ -64,8 +65,8 @@ def read_root():
     """
     return {"info":"nothing here... /docs to documentation"}
 
-@app.post("/image/")
-async def create_upload_file(file: UploadFile = File(...)):
+@app.post("/post_image/")
+async def post_file(file: UploadFile = File(...)):
     """ 
     POST method to API root/home path.
 
@@ -76,14 +77,16 @@ async def create_upload_file(file: UploadFile = File(...)):
     """
 
     image = read_imagefile(await file.read())
-    results.set_results(ocr_process(image, filter_words.get_filter()))
+    filtered, raw = ocr_process(image, filter_words.get_filter())
+    results.set_results(filtered)
+    raw_results.set_results(raw)
 
     return {"result":results.get_results()}
 
-@app.get("/image/")
+@app.get("/result/")
 async def get_latest_result():
     """ 
-    GET method to get hte latest result.
+    GET method to get the latest result.
 
     Args:
 
@@ -92,6 +95,18 @@ async def get_latest_result():
     """
 
     return {"latest_result":results.get_results()}
+
+@app.get("/raw_result/")
+async def get_latest_raw_result():
+    """ 
+    GET method to get the latest raw result.
+
+    Args:
+
+    Returns:
+        Latest OCR processing raw result.
+    """
+    return {"latest_result":raw_results.get_results()}
 
 @app.put("/filter/")
 async def update_flter(filter_: UpdateFilter):
@@ -118,7 +133,7 @@ async def get_latest_filter():
     Args:
 
     Returns:
-        Lastest word filter on API.
+        Latest word filter on API.
     """
 
     return {"latest_filter":filter_words.get_filter()}
