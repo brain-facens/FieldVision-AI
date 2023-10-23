@@ -86,7 +86,7 @@ async def post_file(file: UploadFile = File(...)):
 @app.get("/result/")
 async def get_latest_result():
     """ 
-    GET method to get hte latest result.
+    GET method to get the latest result.
 
     Args:
 
@@ -98,6 +98,14 @@ async def get_latest_result():
 
 @app.get("/raw_result/")
 async def get_latest_raw_result():
+    """ 
+    GET method to get the latest raw result.
+
+    Args:
+
+    Returns:
+        Latest OCR processing raw result.
+    """
     return {"latest_result":raw_results.get_results()}
 
 @app.put("/filter/")
