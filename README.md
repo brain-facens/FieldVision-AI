@@ -73,7 +73,7 @@ Running the container will start the API, which is the interface between OCR pro
 
 ---
 
-## Demonstração
+## Demo
 
 
 https://github.com/brain-facens/OCR-notas/assets/64169072/fcb7e222-cb14-4963-8ef6-a1e8f77f521b
@@ -84,7 +84,7 @@ https://github.com/brain-facens/OCR-notas/assets/64169072/fcb7e222-cb14-4963-8ef
 
 ## 🤝 Collaborators
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+We would like to thank the following people who contributed to this project:
 
 <table>
   <tr>
