@@ -138,7 +138,7 @@ async def get_latest_filter():
     Args:
 
     Returns:
-        Latest word filter on API.
+        Returns the latest word filter on API.
     """
 
     return {"latest_filter":filter_words.get_filter()}
