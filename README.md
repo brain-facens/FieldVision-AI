@@ -1,46 +1,43 @@
-# OCR Notas
+# FieldVision AI
 
 https://github.com/brain-facens/OCR-notas/assets/64169072/8078be88-cb17-4616-9e03-8646b638b623
 
-API para processamento de texto em notas fiscais, com o objetivo de realizar a identificação de campos relevantes em uma nota e otimizar sistemas de boneficação ou validação. Facilidando a vida de logistas, comerciantes e gestores, a aplicação conta com uma interface que captura imagens da webcam, realiza o processamento da imagem por meio de OCR e disponibiliza a visualização dos resultados obtidos.
+API for processing text on invoices, with the aim of identifying relevant fields on an invoice and optimizing bonus or validation systems. Making life easier for logisticians, merchants and managers, the application has an interface that captures images from the webcam, processes the image using OCR and provides a visualization of the results obtained.
 
-## Primeiros passos
+## First Stepes
 
-Este projeto foi desenvolvido para executar uma interface web, onde o usuário terá acesso ao sistema de captura de imagens e os dados processados desta mesma imagem. Siga os passos a seguir para utilizar este projeto, a versão estável está na branch master.
+This project was developed to run a web interface, where the user will have access to the image capture system and the data processed from that image. Follow the steps below to use this project, the stable version is in the main branch.
 
-### Prerequisitos
+### Requirements
 
-Para o bom funcionamento, é ideal que os requsitos abaixo sejam atendidos:
+The following requirements should ideally be met for proper operation:
 
-- Ubuntu 20.04 (Ambiente de desenvolvimento original, mas é compatível com 18.04 e 22.04)
-- Docker Engine ou Docker Desktop
+- Ubuntu 20.04 (Original development environment, but compatible with 18.04 and 22.04)
+- Docker Engine or Docker Desktop
 - Python 3.8
 - Git
 - Anaconda/Miniconda
-- Desejáveis
-  - CUDA 10.1 / CUDA 10.2
-  - cuDNN 7.6
-- Crie um ambiente virtual para o projeto caso queira trabalhar sem virtualização;
+- Create a virtual environment for the project if you want to work without conda;
  
   ```
   conda create --name paddle_env python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 
-  # Ative o ambiente
+  # Activate the environment
   conda activate paddle_env
   ```
 
 ---
-**Atenção!**
-**Recomendamos que utilize o container Docker desenvolvido para este projeto, pois a aplicação é estável. Evitando assim, o risco de instalações erradas, erros de paths e versões de bibliotecas.**
+**Warning!**
+**We recommend that you use the Docker container developed for this project, as the application is stable. This avoids the risk of incorrect installations, path errors and library versions.**
 
 ---
 
-### Instalação 
+### Installation 
 
-Localmente:
+Local:
 
 ```
-# Ative o ambiente
+# Activate the environment
 conda activate paddle_env
 
 git clone https://github.com/brain-facens/OCR-notas.git
@@ -51,28 +48,28 @@ pip install -r requirements.txt
 
 Docker:
 ```
-# Download da imagem do projeto
+# Pull image
 docker pull brain20/ocr-notas
 ```
 
 
-## Utilização
+## Usage
 
-Localmente:
+Local:
 
 ```
-# filtro aplicavél de até 3 palavras
+# applicable filter of up to 3 words
 python main.py --filter <fist,second,third,...>
 ```
 
 Docker:
 ```
-# Execução do conteiner com a aplicação
+# Running the container with the application
 docker run -it --rm -p 8080:8080 brain20/ocr-notas
 ```
 ---
-**Atenção!**
-A execução do container, iniciará a API, ela é a interface entre o processamento da OCR e o usuário final. A API é documentada em um Swagger, onde você poderá testa-la.
+**Warning!**
+Running the container will start the API, which is the interface between OCR processing and the end user. The API is documented in a Swagger, where you can test it.
 
 ---
 
