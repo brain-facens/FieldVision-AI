@@ -114,7 +114,7 @@ async def get_latest_raw_result():
     return {"latest_result":raw_results.get_results()}
 
 @app.put("/v1/filter/")
-async def update_flter(filter_: UpdateFilter):
+async def update_filter(filter_: UpdateFilter):
     """ 
     PUT method to update the filter.
 
@@ -144,4 +144,4 @@ async def get_latest_filter():
     return {"latest_filter":filter_words.get_filter()}
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8085, reload=True)
