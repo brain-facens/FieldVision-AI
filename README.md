@@ -20,10 +20,10 @@ The following requirements should ideally be met for proper operation:
 - Create a virtual environment for the project if you want to work without conda;
  
   ```
-  conda create --name paddle_env python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  conda create --name fielvision python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 
   # Activate the environment
-  conda activate paddle_env
+  conda activate fielvision
   ```
 
 ---
@@ -38,11 +38,13 @@ Local:
 
 ```
 # Activate the environment
-conda activate paddle_env
+conda activate fielvision
 
-git clone https://github.com/brain-facens/OCR-notas.git
+# Clone repository
+git clone https://github.com/brain-facens/FieldVision-AI.git
 
-cd OCR-notas
+# Install requirements
+cd FieldVision-AI/
 pip install -r requirements.txt
 ```
 
@@ -58,8 +60,11 @@ docker pull brain20/ocr-notas
 Local:
 
 ```
-# applicable filter of up to 3 words
-python main.py --filter <fist,second,third,...>
+# Applicable filter of up to 3 words 
+# python src/field_vision_API/main.py <fist, second, third>
+
+# Run API
+python src/field_vision_API/main.py
 ```
 
 Docker:
