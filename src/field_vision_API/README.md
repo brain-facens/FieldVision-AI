@@ -2,8 +2,6 @@
 API for processing text on invoices, with the aim of identifying relevant fields on an invoice and optimizing bonus or validation systems. Making life easier for logisticians, merchants and managers, the application has an interface that captures images from the webcam, processes the image using OCR and provides a visualization of the results obtained.
 
 
-<center>
-
 | API Call | Action|
 |----------|-------|
 | GET / | Home path |
@@ -20,7 +18,6 @@ API for processing text on invoices, with the aim of identifying relevant fields
 | ***1 Basic Positive Tests*** |||
 | Execute API call with valid required parameters| Validate status code:| 1. All requests should return 2XX HTTP status code <br> 2. Returned status code is according to spec: <br> - 200 OK for **GET**, **POST** and **PUT** request <br> 3. Validate returns with expected API data: <br> - **GET** /, returns: Information for user to found the API docs <br> - **GET** /v1/result/, returns: Information for user to found the API docs <br> - **GET** /v1/raw_result/, returns: Latest OCR processing raw result <br> - **GET** /v1/filter/, returns the latest word filter on API <br> - **POST** /v1/post_image/, returns: Information for user to found the API docs <br> - **PUT** /v1/filter/, returns: The new filter |
 ---
-</center>
 
 ## Example Test scripts
 
