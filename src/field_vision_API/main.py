@@ -68,7 +68,7 @@ def read_root():
 @app.post("/v1/post_image/")
 async def post_file(file: UploadFile = File(...)):
     """ 
-    POST method to upload image.
+    POST method to API root/home path.
 
     Args:
 
