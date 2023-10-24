@@ -63,9 +63,9 @@ def read_root():
     Returns:
         Information for user to found the API docs.
     """
-    return {"info":"nothing here... /docs to documentation"}
+    return {"info":"nothing here... <address>/docs to documentation"}
 
-@app.post("/post_image/")
+@app.post("/v1/post_image/")
 async def post_file(file: UploadFile = File(...)):
     """ 
     POST method to API root/home path.
@@ -88,7 +88,7 @@ async def post_file(file: UploadFile = File(...)):
 
     return {"result":results.get_results()}
 
-@app.get("/result/")
+@app.get("/v1/result/")
 async def get_latest_result():
     """ 
     GET method to get the latest result.
@@ -101,7 +101,7 @@ async def get_latest_result():
 
     return {"latest_result":results.get_results()}
 
-@app.get("/raw_result/")
+@app.get("/v1/raw_result/")
 async def get_latest_raw_result():
     """ 
     GET method to get the latest raw result.
@@ -113,7 +113,7 @@ async def get_latest_raw_result():
     """
     return {"latest_result":raw_results.get_results()}
 
-@app.put("/filter/")
+@app.put("/v1/filter/")
 async def update_flter(filter_: UpdateFilter):
     """ 
     PUT method to update the filter.
@@ -130,7 +130,7 @@ async def update_flter(filter_: UpdateFilter):
 
     return {"new_filter":filter_words.get_filter()}
 
-@app.get("/filter/")
+@app.get("/v1/filter/")
 async def get_latest_filter():
     """ 
     GET method to get the latest filter on API.
