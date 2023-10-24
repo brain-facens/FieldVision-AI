@@ -1,6 +1,22 @@
 # FieldVision API
 API for processing text on invoices, with the aim of identifying relevant fields on an invoice and optimizing bonus or validation systems. Making life easier for logisticians, merchants and managers, the application has an interface that captures images from the webcam, processes the image using OCR and provides a visualization of the results obtained.
 
+Follow the steps bellow to install the FieldVision API:
+
+```
+# Clone repository
+git clone https://github.com/brain-facens/FieldVision-AI.git
+
+# Install requirements
+cd FieldVision-AI/
+pip install -r requirements.txt
+
+# Run API
+python src/field_vision_API/main.py
+```
+
+## API Methods
+Below are the methods present in the FieldVision API and their respective functions.
 
 | API Call | Action|
 |----------|-------|
@@ -11,17 +27,13 @@ API for processing text on invoices, with the aim of identifying relevant fields
 | POST /v1/post_image/ | Upload image |
 | PUT /v1/filter/ | Update the filter |
 
-## Test Cases for API Testing
 
-| Test Scenario Category | Test Action Category | Test Action Description |
-|------------------------|----------------------|-------------------------|
-| ***1 Basic Positive Tests*** |||
-| Execute API call with valid required parameters| Validate status code:| 1. All requests should return 2XX HTTP status code <br> 2. Returned status code is according to spec: <br> - 200 OK for **GET**, **POST** and **PUT** request <br> 3. Validate returns with expected API data: <br> - **GET** /, returns: Information for user to found the API docs <br> - **GET** /v1/result/, returns: Information for user to found the API docs <br> - **GET** /v1/raw_result/, returns: Latest OCR processing raw result <br> - **GET** /v1/filter/, returns the latest word filter on API <br> - **POST** /v1/post_image/, returns: Information for user to found the API docs <br> - **PUT** /v1/filter/, returns: The new filter |
----
 
-## Example Test scripts
 
-How to test **GET** methods:
+## Example Request Scripts
+Below are the scripts that make it possible to request the methods present in the API.
+
+#### **GET** methods:
 
 ```
 import pytest
@@ -29,10 +41,10 @@ import requests
 
 def test_api_call_root(url = <API_url>):
     response = requests.get(url)
-    assert response.status_code == 200, "Failed!"
+    return response
 ```
 ---
-How to test **PUT** methods:
+#### **PUT** methods:
 
 ```
 import pytest
@@ -46,10 +58,10 @@ def test_api_put_result(url = <API_url>):
     }
 
     response = requests.put(url, json=payload)
-    assert response.status_code == 200, "Failed!"
+   return response
 ```
 ---
-How to test **POST** methods:
+#### **POST** methods:
 
 ```
 import pytest
@@ -63,5 +75,5 @@ def test_api_put_result(url = <API_url>):
     }
 
     response = requests.put(url, json=payload)
-    assert response.status_code == 200, "Failed!"
+    return response
 ```
