@@ -4,7 +4,7 @@ Script to test PUT method on endpoint /v1/filter/
 import pytest # W0611, pylint: disable=unused-import
 import requests
 
-def test_api_put_result(url = "http://0.0.0.0:8085/v1/filter/"):
+def test_api_put_result(url = "http://localhost:8085/v1/filter/"):
     """ 
     Test for endpoint /v1/filter/.
 

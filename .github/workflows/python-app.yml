@@ -31,4 +31,9 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-    
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag fiel-vision-api
+    - name: Run API docker image
+      run: |
+        docker run -d -p 8085:8085 fiel-vision-api

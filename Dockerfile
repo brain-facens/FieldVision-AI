@@ -1,10 +1,10 @@
-FROM python:3.7
+FROM python:3.8
 
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y libgtk2.0-dev && apt-get install ffmpeg libsm6 libxext6  -y
 
-RUN git clone https://github.com/PaddlePaddle/PaddleOCR.git
+RUN git clone https://github.com/brain-facens/FieldVision-AI.git
 
 RUN pip install --upgrade pip
 
@@ -22,7 +22,4 @@ ENV PYTHONPATH=/app/PaddleOCR
 
 EXPOSE 8080
 
-COPY python_scripts/utils.py /app
-COPY python_scripts/main.py /app
-
-CMD ["python", "main.py", "--filter", "first,second,third"]
+CMD ["python", "FieldVision-AI/src/field_vision_api/main.py"]
