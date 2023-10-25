@@ -23,7 +23,7 @@ import argparse
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel # E0611, pylint: disable=no-name-in-module
 import uvicorn
-from utils import (ocr_process, filter_process, read_imagefile,
+from util.utils import (ocr_process, filter_process, read_imagefile, # E0401, pylint: disable=import-error
                     list_of_strings, Results, Filter)
 
 

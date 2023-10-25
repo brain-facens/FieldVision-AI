@@ -198,12 +198,16 @@ Returns:<br>
 &nbsp;<br>
 ...<br>
 Args:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;img:&nbsp;image&nbsp;to&nbsp;process.<br>
-&nbsp;<br>
-Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;of&nbsp;OCR&nbsp;processing&nbsp;on&nbsp;the&nbsp;image.</tt></dd></dl>
- <dl><dt><a name="-read_imagefile"><strong>read_imagefile</strong></a>(data)</dt><dd><tt>Image&nbsp;processing.<br>
-&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Frame&nbsp;with&nbsp;rgb&nbsp;color&nbsp;pattern&nbsp;and&nbsp;processed&nbsp;from&nbsp;byte&nbsp;array&nbsp;to&nbsp;ndarray.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>List</strong> = typing.List</td></tr></table>
+</body></html>
 ...<br>
 Args:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;data:&nbsp;API&nbsp;buffer&nbsp;image.<br>

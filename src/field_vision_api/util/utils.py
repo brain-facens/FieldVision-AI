@@ -55,7 +55,7 @@ class Filter:
         """
         self._filter_words = filter_
 
-    def set_filter(self, new_filter):
+    def set_filter(self, new_filter) -> None:
         """ 
         Setter for filter words.
 
@@ -68,7 +68,7 @@ class Filter:
         """
         self._filter_words = new_filter
 
-    def get_filter(self) -> List:
+    def get_filter(self) -> list:
         """ 
         Getter for filter words.
 
@@ -126,7 +126,7 @@ class Results:
         """
         self._results = new_results
 
-    def get_results(self) -> List:
+    def get_results(self) -> list:
         """ 
         Getter for OCR processing results.
 
@@ -140,7 +140,7 @@ class Results:
         return self._results
 
 
-def list_of_strings(arg) -> List:
+def list_of_strings(arg) -> list:
     """ 
     Get list of strings from user's filter input.
 
@@ -170,7 +170,7 @@ def read_imagefile(data) -> np.ndarray:
     cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # E1101, pylint: disable=no-member
     return frame
 
-def ocr_process(img) -> List:
+def ocr_process(img) -> list:
     """ 
     OCR processing.
 
@@ -186,7 +186,7 @@ def ocr_process(img) -> List:
     return result
 
 
-def filter_process(result, phrases) -> List:
+def filter_process(result, phrases) -> list:
     """ 
     Filter processing.
 

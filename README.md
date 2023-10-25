@@ -4,6 +4,9 @@ https://github.com/brain-facens/OCR-notas/assets/64169072/8078be88-cb17-4616-9e0
 
 API for processing text on invoices, with the aim of identifying relevant fields on an invoice and optimizing bonus or validation systems. Making life easier for logisticians, merchants and managers, the application has an interface that captures images from the webcam, processes the image using OCR and provides a visualization of the results obtained.
 
+## Docs
+[Visit our wiki](https://github.com/brain-facens/FieldVision-AI/wiki)
+
 ## First Steps
 
 This project was developed to run a web interface, where the user will have access to the image capture system and the data processed from that image. Follow the steps below to use this project, the stable version is in the main branch.
@@ -20,10 +23,10 @@ The following requirements should ideally be met for proper operation:
 - Create a virtual environment for the project if you want to work without conda;
  
   ```
-  conda create --name paddle_env python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  conda create --name fielvision python=3.8 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 
   # Activate the environment
-  conda activate paddle_env
+  conda activate fielvision
   ```
 
 ---
@@ -38,11 +41,13 @@ Local:
 
 ```
 # Activate the environment
-conda activate paddle_env
+conda activate fielvision
 
-git clone https://github.com/brain-facens/OCR-notas.git
+# Clone repository
+git clone https://github.com/brain-facens/FieldVision-AI.git
 
-cd OCR-notas
+# Install requirements
+cd FieldVision-AI/
 pip install -r requirements.txt
 ```
 
@@ -58,8 +63,11 @@ docker pull brain20/ocr-notas
 Local:
 
 ```
-# applicable filter of up to 3 words
-python main.py --filter <fist,second,third,...>
+# Applicable filter of up to 3 words 
+# python src/field_vision_API/main.py <fist, second, third>
+
+# Run API
+python src/field_vision_API/main.py
 ```
 
 Docker:
