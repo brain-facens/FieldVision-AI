@@ -5,7 +5,7 @@ Script to test GET method endpoint /v1/filter/.
 import pytest # W0611, pylint: disable=unused-import
 import requests
 
-def test_api_get_filter(url = "http://0.0.0.0:8085/v1/filter/") -> None:
+def test_api_get_filter(url = "http://localhost:8085/v1/filter/") -> None:
     """ 
     Test for endpoint filter result /v1/filter/.
 
