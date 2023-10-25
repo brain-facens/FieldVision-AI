@@ -34,9 +34,9 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag fiel-vision-api
-    - name: Run api
+    - name: Run API
       run: |
-        docker run -it --rm -p 8085:8085 fiel-vision-api
-    - name: Test api
+        docker run -T --rm -p 8085:8085 fiel-vision-api
+    - name: Test API
       run: |
         pytest
