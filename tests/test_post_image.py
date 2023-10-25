@@ -4,7 +4,7 @@ Script to test POST method on endpoint /v1/post_image/
 import pytest # W0611, pylint: disable=unused-import
 import requests
 
-def test_api_post_img(url = "http://0.0.0.0:8085/v1/post_image/"):
+def test_api_post_img(url = "http://localhost:8085/v1/post_image/"):
     """ 
     Test for endpoint /v1/post_image/.
 

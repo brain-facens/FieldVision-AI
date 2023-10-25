@@ -4,7 +4,7 @@ Script to test GET method on endpoint /v1/result/.
 import pytest # W0611, pylint: disable=unused-import
 import requests
 
-def test_api_get_result(url = "http://0.0.0.0:8085/v1/result/"):
+def test_api_get_result(url = "http://localhost:8085/v1/result/"):
     """ 
     Test for endpoint raw result /v1/result/.
 
