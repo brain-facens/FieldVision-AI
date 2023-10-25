@@ -18,5 +18,9 @@ def test_api_post_img(url = "http://0.0.0.0:8085/v1/post_image/"):
     ]
 
     response = requests.post(url, data=payload, files=files)
-    assert response.status_code == 200
-    
+    assert response.status_code == 200, 'Request failed!'
+    response = response.json()
+    assert response['result'] == 'result in /raw_result but no filter, please set a filter!', 'Result error!'
+
+if __name__ == '__main__':
+    test_api_post_img()
