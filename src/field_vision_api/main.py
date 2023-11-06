@@ -128,7 +128,7 @@ async def update_filter(filter_: UpdateFilter):
 
     filter_words.set_filter(filter_.filter)
 
-    return {"new_filter":filter_words.get_filter()}
+    return {"new_filter":filter_words.get_filter()} 
 
 @app.get("/v1/filter/")
 async def get_latest_filter():
